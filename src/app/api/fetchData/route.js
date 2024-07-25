@@ -1,24 +1,21 @@
-// pages/api/users.js
 import dbConnect from '../../lib/mongodb.js';
 import User from '../../actions/User.js';
 
-export async function POST(req, res) {
+export async function GET(req, res) {
   await dbConnect();
-  const body = await req.json();
 
-  console.log('Request body:', body); // Log request body
   try {
-    const user = await User.create(body);
-    return new Response(JSON.stringify({ success: true, data: user }), {
-      status: 201,
+    const users = await User.find({});
+    return new Response(JSON.stringify(users), {
+      status: 200,
       headers: {
         'Content-Type': 'application/json',
       },
     });
   } catch (error) {
-    console.error('Error creating user:', error);
+    console.error('Error fetching users:', error);
     return new Response(JSON.stringify({ success: false, error: error.message }), {
-      status: 400,
+      status: 500,
       headers: {
         'Content-Type': 'application/json',
       },
