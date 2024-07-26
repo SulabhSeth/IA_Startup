@@ -16,25 +16,25 @@ const YourComponent = () => {
   };
 
 
-  useEffect(() => {
-    const fetchDocuments = async () => {
-      try {
-        const response = await fetch('/api/fetchData');
-        if (!response.ok) {
-          console.error('Failed to fetch the data:', response.statusText);
-          setMessage(`Error: ${response.statusText}`);
-          return;
-        }
-        const data = await response.json();
-        setDocuments(data);
-      } catch (error) {
-        console.error('Failed to fetch the data:', error);
-        setMessage(`Error: ${error.message}`);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchDocuments = async () => {
+  //     try {
+  //       const response = await fetch('/api/fetchData');
+  //       if (!response.ok) {
+  //         console.error('Failed to fetch the data:', response.statusText);
+  //         setMessage(`Error: ${response.statusText}`);
+  //         return;
+  //       }
+  //       const data = await response.json();
+  //       setDocuments(data);
+  //     } catch (error) {
+  //       console.error('Failed to fetch the data:', error);
+  //       setMessage(`Error: ${error.message}`);
+  //     }
+  //   };
 
-    fetchDocuments();
-  }, []);
+  //   fetchDocuments();
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
