@@ -1,34 +1,35 @@
 import Link from "next/link";
 
-export default function TableDisplay({ Name, Email, Worth, Country, slug }) {
+const TableDisplay = ({ startup_Name, city, category, state, slug }) => {
   return (
     <tr>
-      <td class="p-2 whitespace-nowrap">
-        <div class="flex items-center">
-          <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
+      <td className="p-2 whitespace-nowrap">
+        <div className="flex items-center">
+          <div className="w-10 h-10 flex-shrink-0 sm:mr-3">
             <img
-              class="rounded-full"
+              className="rounded-full"
               src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-05.jpg"
               width="40"
               height="40"
-              alt="Alex Shatov"
+              alt="Profile"
             />
           </div>
-
           <Link href={`/startups/${slug}`}>
-            <div class="font-medium text-gray-800">{Name}</div>
+            <div className="font-medium text-gray-800">{startup_Name}</div>
           </Link>
         </div>
       </td>
-      <td class="p-2 whitespace-nowrap">
-        <div class="text-left">{Email}</div>
+      <td className="p-2 whitespace-nowrap">
+        <div className="text-left">{city}</div>
       </td>
-      <td class="p-2 whitespace-nowrap">
-        <div class="text-left font-medium text-green-500">{Worth}</div>
+      <td className="p-2 whitespace-nowrap">
+        <div className="text-left font-medium text-green-500">{category}</div>
       </td>
-      <td class="p-2 whitespace-nowrap">
-        <div class="text-lg text-center">{Country}</div>
+      <td className="p-2 whitespace-nowrap ">
+        <div className="text-lg text-center mr-12">{state}</div>
       </td>
     </tr>
   );
-}
+};
+
+export default TableDisplay;

@@ -1,16 +1,26 @@
-import { startUpDetails } from "@/app/data";
 import Tabs from "@/app/Sidebar/Table/StartupDetail/Tabs";
 
-export default function IndividualStartup({ params }) {
-  const company = { startUpDetails };
+export default async function IndividualStartup({ params }) {
+  try {
+    const res = await fetch("http://localhost:8080/api/fetchData", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store", // Ensure no caching
+    });
 
-  const companyDetail = company.startUpDetails.find(
-    (obj) => obj.slug === params.someslug
-  );
+    const data = await res.json();
+    console.log("Fetched data slug is" + params.someslug); // Debugging log
+    const decodedSlug = decodeURIComponent(params.someslug)
+    const companyDetail = data.find((obj) => obj.slug === decodedSlug);
 
-  return (
-    <div>
-      <Tabs {...companyDetail} />
-    </div>
-  );
+    return (
+      <div class= "">
+        <Tabs {...companyDetail} />
+      </div>
+    );
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    // return <div>Error fetching data</div>;
+  }
 }
